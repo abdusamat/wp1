@@ -1,0 +1,150 @@
+h1
+
+a(href="#")#test
+
+a(href="#").hello
+
+.container
+    .row
+
+.class_left Left sidebar
+.class_right Right sidebar
+
+.class_roditel: .class_pod
+
+- var item = "Value of varieble"
+
+a(href="#").block=item
+
+- var massiv = ["Odin", "Dva", "Tree", "Four"]
+
+each mas in massiv
+    li.blick_li=mas
+
+each mass, index in massiv
+    .wrapper
+        .col-md-4= mas
+        .index= index
+
+- for (var i = 0; i < massiv.length; i++)
+    .warpper
+        .col-sm-4= massiv[i]
+        .index= i
+        .length= massiv.length
+
+- var w = 0;
+while w < massiv.length
+    .warpper
+        .col-xs-4= massiv[w]
+        .index= w++
+        .length= massiv.length
+
+-
+    var obj = {
+        val: 'prop',
+        val2: 'prop2'
+    }
+
+each value, key in obj
+    .obj
+        .key= key
+        .value= value
+
+-
+    var objec = {
+    val: '<a href="#">ssylka ! belgi ekraniravieni jok kylat</a>',
+    val2: 'prop2'
+    }
+
+each item in objec
+    .obj
+        .value!= item
+
+-
+    var objmassiv = [
+        {
+            link: '<a href="#">ssylka 1</a>',
+            title: 'prod1'
+        },{
+            link: '<a href="#">ssylka 2</a>',
+            title: 'prod2'
+        },{
+            link: '<a href="#">ssylka 3</a>',
+            title: 'prod3'
+        }
+    ]
+
+each itemprod in objmassiv
+    .objclass
+        .link!= itemprod['link']
+        .title= itemprod.title
+
+
+each prod in objmassiv
+    .objclas
+        .link Name product !{prod.link}
+        if prod.title == 'prod2'
+            .title(data-title=`${prod.title}`) Uslovie rabotalo
+        else if prod.title == 'prod3'
+            .title Uslovie rabotalo dly prod3
+        else
+            .title Uslovie ne rabotalo
+
+
+each produc in objmassiv
+    .obclas
+        .link Name product !{produc.link}
+        case produc.title
+            when 'prod1'
+                .title(data-title=`${produc.title}`) Case rabotalo 1
+            when 'prod2'
+                .title(data-title=`${produc.title}`) Case rabotalo 2
+            when 'prod3'
+                .title(data-title=`${produc.title}`) Case rabotalo 3
+
+
+- var ind = 0;
+
+select
+    while ind < 60
+        option=ind++
+
+- var links = ['Home', 'Contacts', 'About', 'Portfolio']
+
+ul.list
+    each link in links
+        li.list__item: a(href="#").list__link!= link
+
+ul.lister
+    each linker in links
+        if linker === 'Home'
+            li.list__item: a(href="#").active=linker
+        else
+            li.list__item: a(href="#").list__link!= linker
+
+ul.lister
+    each linker in links
+        li.list__item
+            if linker === 'Home'
+                a(href="#").active=linker
+            else
+                a(href="#").list__link!= linker
+
+mixin list(items, className, active)
+    ul(class=className)
+        each item in items
+            li(class=className + '__item')
+                a(class=className + '__link')=item
+
++list(['first', 'second'], 'listmix', 0)
+
+
+mixin listmix(items, className, active)
+    ul(class=className)
+        each item in items
+            li(class=className + '__item')
+                a(class=className + '__link')=item
+
++listmix(['home', 'about', 'portfolio', 'contacts'], 'listmix', 0)
+
+// include mixin.pug
